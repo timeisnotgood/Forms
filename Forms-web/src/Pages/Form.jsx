@@ -30,22 +30,61 @@ const Form = () => {
   }
   
   return (
-    <div>
-        <form onSubmit={handler}>
-        <input type='text' placeholder='Name' name='name' onChange={updateValues}/>
-        <input type='text' placeholder='fatherName' name='fatherName' onChange={updateValues}/>
-        <input type='text' placeholder='Age' name='age' onChange={updateValues}/>
-        <input type='text' placeholder='Cast' name='cast' onChange={updateValues}/>
-        <input type='text' placeholder='Degree' name='degree' onChange={updateValues}/>
-        <input type='text' placeholder='CGPA' name='cgpa' onChange={updateValues}/>
-        <button>Submit</button>
+    <div className='w-full h-screen flex justify-center'>
+        <form onSubmit={handler} className='flex flex-col w-96 h-full  outline-1 gap-5'>
+        <div>
+        <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
+        </label>
+        <input 
+        type='text' 
+        name='name' 
+        onChange={updateValues}
+        autoComplete="username"
+        className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+        />
+        </div>
+        <div>
+        <label className="block text-sm font-medium leading-6 text-gray-900">fatherName</label>
+        <input type='text' name='fatherName' onChange={updateValues}
+          className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+        />
+        </div>
+        <div>
+          <label className="block text-sm font-medium leading-6 text-gray-900">Age</label>
+          <input type='text' name='age' onChange={updateValues}
+            className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium leading-6 text-gray-900">cast</label>
+          <input type='text' name='cast' onChange={updateValues}
+            className="flex rounded-md shadow-sm ring-1 w-full ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            Degree
+          </label>
+          <input type='text' name='degree' onChange={updateValues}
+            className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 w-full focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium leading-6 text-gray-900">
+            CGPA
+          </label>
+          <input type='text' name='cgpa' onChange={updateValues}
+            className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 w-full max-w-64 px-1"
+          />
+        </div>
+        <button className='bg-black text-white rounded-md py-1 w-64'>Submit</button>
       </form>
-      <hr/>
-      <ul>
+      {/* <ul>
         {dataholder.map((val, index)=>(
           <li key={index}>{val.name}</li>
         ))}
-      </ul>
+      </ul> */}
       {/* <List data={{data}}/> */}
     </div>
   )
