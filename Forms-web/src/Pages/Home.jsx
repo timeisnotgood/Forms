@@ -13,7 +13,6 @@ const Home = () => {
         </div>
         <div className='shadow-md p-2 w-24 rounded-md flex justify-center items-center transition hover:duration-200 h-20 font-semibold hover:bg-black hover:text-white'>
           <Link to={'/list'}>List</Link>
-          <p>new</p>
         </div>
     </div>
     </div>

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faHouse, faUserCircle} from "@fortawesome/free-solid-svg-icons"
+import { Link } from 'react-router-dom'
 
 const List = () => {
 
@@ -34,11 +37,18 @@ const List = () => {
       <ul className='flex flex-col gap-5 items-center mt-10'>
         {data.map((name, index)=>(
           <li 
-          key={index}
-          className='border-solid border-2 w-2/3 px-6 py-4 rounded-md font-bold flex flex-row justify-between'
-          >{name.name}
-            <div>
-              <button className='border-solid border text-sm p-2 rounded-md font-semibold'>view</button>
+            key={index}
+            className='border-solid border-2 w-2/3 px-6 py-4 rounded-md font-bold flex flex-row justify-between'>
+            <div className='flex felx-row gap-6'>
+              <FontAwesomeIcon icon={faUserCircle} className='mt-2'/>
+              {name.name}
+            </div>
+            <div className='flex flex-row gap-2'>
+              <Link to={'/detail'}>
+              <FontAwesomeIcon icon={faEye} className='mt-2'/>
+              </Link>
+              <hr className='h-9 mr-2 ml-2 bg-black border'/>
+              <button className='border-solid border text-sm p-2 rounded-md font-semibold'>Edit</button>
               <button className='text-sm p-2 rounded-md font-semibold'>Delete</button>
             </div>
           </li>
