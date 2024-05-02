@@ -18,18 +18,18 @@ const Details = () => {
         <hr className='mt-6 w-4/5'/>
       </div>
       {/* Main element starts here */}
-      <div className='border-solid border w-2/3 h-2/3 rounded-3xl shadow-lg box-border p-5'>
-        <label>UserName</label>
+      <div className='border-solid border w-2/3 h-2/3 rounded-3xl shadow-lg box-border p-5 flex flex-col flex-wrap'>
+        <label className='block font-mono font-semibold text-4xl w-36 text-center'>UserName</label>
         {obj.name}
-        <label>FatherName</label>
+        <label className='block border-solid border w-36 text-center' >FatherName</label>
         {obj.fatherName}
-        <label>Age</label>
+        <label className='block border-solid border w-36 text-center' >Age</label>
         {obj.age}
-        <label>Cast</label>
+        <label className='block border-solid border w-36 text-center' >Cast</label>
         {obj.cast}
-        <label>Degree</label>
+        <label className='block border-solid border w-36 text-center'>Degree</label>
         {obj.degree}
-        <label>Cgpa</label>
+        <label className='block border-solid border w-36 text-center'>Cgpa</label>
         {obj.cgpa}
       </div>
     </div>
