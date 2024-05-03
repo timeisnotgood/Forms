@@ -48,7 +48,9 @@ const List = () => {
               <FontAwesomeIcon icon={faEye} className='mt-2'/>
               </Link>
               <hr className='h-9 mr-2 ml-2 bg-black border'/>
-              <button className='border-solid border text-sm p-2 rounded-md font-semibold'>Edit</button>
+              <Link to={'/update'}>
+                <button className='border-solid border text-sm p-2 rounded-md font-semibold'>Edit</button>
+              </Link>
               <button className='text-sm p-2 rounded-md font-semibold'>Delete</button>
             </div>
           </li>
