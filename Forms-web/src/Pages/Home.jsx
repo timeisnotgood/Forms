@@ -2,6 +2,9 @@ import React from 'react'
 import Form from './Form'
 import List from './List'
 import { Link } from 'react-router-dom'
+import { faArrowRightLong, faEye, faHouse, faRightFromBracket, faUserCircle} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const Home = () => {
   return (
@@ -9,14 +12,16 @@ const Home = () => {
     <h1 className='font-bold text-4xl'>HANDELING THE FORMS <span className='bg-black text-white p-2 rounded-r-md'>IN DIFF WAY</span></h1>
     <div className='flex flex-row gap-10'>
         <Link to={'/form'}>
-          <div className='shadow-md p-2 w-24 rounded-md flex justify-center items-center h-20 font-semibold transition hover:duration-200 hover:bg-black hover:text-white'>
+          <p className='shadow-md w-64 h-20 py-5  box-border rounded-md text-center font-semibold text-2xl transition hover:duration-200 hover:bg-black hover:text-white'>
             Form
-          </div>
+            <FontAwesomeIcon icon={faArrowRightLong} className='mt-2 ml-5'/>
+          </p>
         </Link>
         <Link to={'/list'}>
-          <div className='shadow-md p-2 w-24 rounded-md flex justify-center items-center transition hover:duration-200 h-20 font-semibold hover:bg-black hover:text-white'>
+          <p className='shadow-md w-64 h-20 py-5  box-border rounded-md text-center font-semibold text-2xl transition hover:duration-200 hover:bg-black hover:text-white'>
             List
-          </div>
+            <FontAwesomeIcon icon={faArrowRightLong} className='mt-2 ml-5'/>
+          </p>
         </Link>
     </div>
     </div>
