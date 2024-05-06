@@ -30,10 +30,13 @@ const Form = () => {
   }
   
   return (
-    <div className='w-full h-screen flex justify-center'>
-        <form onSubmit={handler} className='flex flex-col w-96 h-full  outline-1 gap-5'>
+    <div className='w-full h-screen flex flex-col items-center'>
+        <h1 className='mt-10 text-center font-black'>Enter 
+          <span className='bg-black text-white p-2 rounded-r-md'>DATA</span>
+        </h1>
+        <form onSubmit={handler} className='grid grid-cols-2 gap-3 w-2/3 h-2/3 mt-10'>
         <div>
-        <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor="username" className="block font-medium text-gray-900">
                 Username
         </label>
         <input 
@@ -41,44 +44,44 @@ const Form = () => {
         name='name' 
         onChange={updateValues}
         autoComplete="username"
-        className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+        className="flex rounded-md shadow-sm mt-3 w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
         />
         </div>
         <div>
-        <label className="block text-sm font-medium leading-6 text-gray-900">fatherName</label>
+        <label className="block font-medium text-gray-900">FatherName</label>
         <input type='text' name='fatherName' onChange={updateValues}
-          className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+          className="flex rounded-md shadow-sm mt-3 w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
         />
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">Age</label>
+          <label className="block font-medium text-gray-900">Age</label>
           <input type='text' name='age' onChange={updateValues}
-            className="flex rounded-md shadow-sm w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+            className="flex rounded-md shadow-sm mt-3 w-full ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">cast</label>
+          <label className="block font-medium text-gray-900">Cast</label>
           <input type='text' name='cast' onChange={updateValues}
-            className="flex rounded-md shadow-sm ring-1 w-full ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+            className="flex rounded-md shadow-sm mt-3 ring-1 w-full ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
+          <label className="block font-medium text-gray-900">
             Degree
           </label>
           <input type='text' name='degree' onChange={updateValues}
-            className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 w-full focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
+            className="flex rounded-md shadow-sm mt-3 ring-1 ring-inset ring-gray-300 w-full focus-within:ring-2 focus-within:ring-inset py-2 max-w-64 px-1"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium leading-6 text-gray-900">
-            CGPA
+          <label className="block font-medium text-gray-900">
+            Cgpa
           </label>
           <input type='text' name='cgpa' onChange={updateValues}
-            className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 w-full max-w-64 px-1"
+            className="flex rounded-md shadow-sm mt-3 ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset py-2 w-full max-w-64 px-1"
           />
         </div>
-        <button className='bg-black text-white rounded-md py-1 w-64'>Submit</button>
+        <button className='rounded-md w-20 box-border bg-black text-white text-sm font-bold'>Submit</button>
       </form>
       {/* <ul>
         {dataholder.map((val, index)=>(
