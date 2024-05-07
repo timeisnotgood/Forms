@@ -1,21 +1,22 @@
 const express = require("express")
 const dotenv = require("dotenv").config()
-const client = require("./config/db")
+const sequelize = require("./config/db")
 
 
 const app = express()
-const port = process.env.PORT || 5000
-
+const port = process.env.port || 5001;
 app.use(express.json())
 
-client.query('SELECT NOW()', (err, res) => {
-    if (err) {
-        console.error('Error executing query', err.stack);
-    } else {
-        console.log('Connected to PostgreSQL on', res.rows[0].now);
+const con = async() =>{
+    try {
+        await sequelize.authenticate();
+        console.log("Connection to Postgres have been established !!");
+    } catch (error) {
+        console.error("Something went wrong with the connection" , error);
     }
-});
+};
+con();
 
-app.listen(process.env.port, () => {
+app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
