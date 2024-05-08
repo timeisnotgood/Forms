@@ -1,15 +1,15 @@
 const express = require("express")
 const dotenv = require("dotenv").config()
 const sequelize = require("./config/db")
+const app = express();
 
-
-const app = express()
 const port = process.env.port || 5001;
 app.use(express.json())
+app.use('/user', require("./routes/userRoute"))
 
 const con = async() =>{
     try {
-        await sequelize.authenticate();
+        await sequelize.sync();
         console.log("Connection to Postgres have been established !!");
     } catch (error) {
         console.error("Something went wrong with the connection" , error);

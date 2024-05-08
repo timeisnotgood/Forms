@@ -1,9 +1,10 @@
-const { Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize('postgres::memory:');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db");
 
 const user = sequelize.define('usr',{
     id:{
-        type:DataTypes.BIGINT
+        type:DataTypes.BIGINT,
+        primaryKey: true
     },
     username:{
         type:DataTypes.STRING,
@@ -16,7 +17,8 @@ const user = sequelize.define('usr',{
     }
 },
 {
-  tableName: 'usr',
+    freezeTableName: true,
+    tableName: 'usr'
 })
 
 module.exports = user;
