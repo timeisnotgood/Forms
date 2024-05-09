@@ -3,7 +3,7 @@ const sequelize = require("../config/db");
 
 const user = sequelize.define('usr',{
     id:{
-        type:DataTypes.BIGINT,
+        type:DataTypes.STRING,
         primaryKey: true
     },
     username:{
@@ -20,5 +20,6 @@ const user = sequelize.define('usr',{
     freezeTableName: true,
     tableName: 'usr'
 })
+
 
 module.exports = user;

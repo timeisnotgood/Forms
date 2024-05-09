@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const userSignup = expressAsyncHandler(async(req, res) =>{
 
     const {id, username, email, password} = req.body;
+    console.log("*****************************", id);
     const hashedPassword = await bcrypt.hash(password, 5);
 
     if (id == "" || username == "" || email == "" || password == "") {
@@ -25,7 +26,6 @@ const userSignup = expressAsyncHandler(async(req, res) =>{
             email:email,
             password:hashedPassword,
         }) 
-        sequelize.close();
         res.status(200).json(insertUser);
     } catch (error) {
         console.log(error);
@@ -36,6 +36,7 @@ const userLogin = expressAsyncHandler( async(req, res) =>{
 
     const { username, password} = req.body;
 
+    console.log("**************************", req.body);
     if(!username || !password){
         res.status(404)
         throw new Error("All fileds are Manadatory");

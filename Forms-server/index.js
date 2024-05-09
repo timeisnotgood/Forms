@@ -1,10 +1,12 @@
 const express = require("express")
 const dotenv = require("dotenv").config()
 const sequelize = require("./config/db")
+const cors = require("cors")
 const app = express();
 
 const port = process.env.port || 5001;
 app.use(express.json())
+app.use(cors());
 app.use('/user', require("./routes/userRoute"))
 
 const con = async() =>{
