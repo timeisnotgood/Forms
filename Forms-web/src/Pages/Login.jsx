@@ -40,7 +40,7 @@ const Login = () => {
     <div className='flex flex-col justify-center items-center h-screen'>
 
     {/* Design start */}
-      <div className='border-solid border rounded-lg w-1/3 h-2/3 shadow-md flex flex-col items-center gap-3 box-border p-5'>
+      <div className='border-solid border rounded-lg w-56 sm:w-2/4 md:w-1/3 h-2/3 shadow-md flex flex-col items-center gap-3 box-border p-5 '>
         <h3 className='text-center font-mono font-semibold text-3xl mt-2'>Login</h3>
         <hr className='w-4/5 border-dotted border border-slate-600'/>
         <form 
@@ -51,13 +51,13 @@ const Login = () => {
           placeholder='Email (or) UserName '
           name='username'
           onChange={inputHandler}
-          className='border-doted placeholder:italic placeholder:text-slate-400 border mt-3 p-2 rounded-lg'/>
+          className='border-doted placeholder:italic placeholder:text-slate-400 placeholder:text-sm sm:placeholder:text-md border mt-3 p-2 rounded-lg'/>
           <input 
             type='text' 
             placeholder='Password'
             name='password'
             onChange={inputHandler}
-            className='border-doted placeholder:italic placeholder:text-slate-400 border p-2 rounded-lg'
+            className='border-doted placeholder:italic placeholder:text-slate-400 placeholder:text-sm sm:placeholder:text-md border p-2 rounded-lg'
           />
           <button className='border-dashed border-2 rounded-lg px-4 py-2 font-semibold'>Login</button>
   
