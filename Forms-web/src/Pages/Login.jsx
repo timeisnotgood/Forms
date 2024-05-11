@@ -18,7 +18,6 @@ const Login = () => {
 
   const submitHandler = async(e) =>{
     e.preventDefault();
-    console.log(logindata);
 
     const loginResponse = await axios.post(`http://localhost:5000/user/getuser`,{
       username : logindata.username,
@@ -31,9 +30,8 @@ const Login = () => {
     }
   )
     const res = loginResponse.request.status;
-    console.log(res);
+    localStorage.setItem("accessToken", loginResponse.data.accessToken);
     if(res == 200) navigate('/')
-
   }
 
   return (
