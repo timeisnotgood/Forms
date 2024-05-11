@@ -15,14 +15,15 @@ const App = () => {
   console.log("App.js");
   return (
     <>
+        <Navbar/>
       <Routes>
+        <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-        <Route path='/' element={<Home/>}/>
         <Route path='/form' element={<Form />}/>
         <Route path='/list' element={<List />}/>
         <Route path='/detail' element={<Details />}/>
-        <Route path='/update' element={<Update />}/>
+        <Route path='/update' element={<Update />}/>        
       </Routes>
     </>
   )

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faHouse, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 const List = () => {
 
@@ -28,6 +29,8 @@ const List = () => {
     cgpa:"6.2"
   }]
   return (
+    <>
+      <Navbar/>
     <div className='h-screen'>
       <div>
         <h1 className='mt-10 text-center font-black'>LIST OF <span className='bg-black text-white p-2 rounded-r-md'>DATA</span></h1>
@@ -58,7 +61,9 @@ const List = () => {
        </ul>
       </div>
     </div>
+    </>
+
   )
 }
 
-export default List
+export default List;

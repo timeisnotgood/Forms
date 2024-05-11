@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTableList} from "@fortawesome/free-solid-svg-icons"
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 
 
 const Navbar = () => {
 
-  console.log("Nav.js");
-
+  const location = useLocation();
   const navigate = useNavigate();
+  const [show, setshow] = useState(true);
   const [userData, setuserData] = useState();
   const [userStatus, setuserStatus] = useState(false)
+  
+  useEffect(()=>{
+    if (location.pathname === '/login' || location.pathname === '/signup' ) setshow(false);
+    else setshow(true);
+  },[location])
+
+  console.log("Nav.js");
 
   useEffect(()=>{
+    
+    const authListner = () =>{
       let userDat =  localStorage.getItem('accessToken');
       console.log("inside useEffect !!");
       if (userDat) {
@@ -26,6 +35,14 @@ const Navbar = () => {
       console.log(userData);
       setuserStatus(true);
       }
+    }
+          // Attach event listener
+    window.addEventListener('authChange', authListner);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener('authChange', authListner);
+    };
     
   },[])
 
@@ -43,6 +60,8 @@ const Navbar = () => {
   }
 
   return (
+    <>
+    {show &&
     <nav className='h-12 flex items-center shadow-sm text-gray-600 justify-around mb-2'>
       <FontAwesomeIcon icon={faTableList} className='mt-2' />
       <Link to={'/'}>
@@ -70,6 +89,8 @@ const Navbar = () => {
       }
       
     </nav>
+    }
+    </>
   )
 }
 
