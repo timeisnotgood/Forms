@@ -19,7 +19,7 @@ const Signup = () => {
   const submitHandler = async(e) =>{
     e.preventDefault();
 
-    const signInResponse = await axios.post(`http://localhost:5000/user/postuser`, {
+    const signInResponse = await axios.post(`http://localhost:5000/user/adduser`, {
       id : uuidv4(),
       username : signUpData.username,
       email : signUpData.email,

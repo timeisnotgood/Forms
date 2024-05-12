@@ -21,8 +21,6 @@ const Navbar = () => {
   console.log("Nav.js");
 
   useEffect(()=>{
-    
-    const authListner = () =>{
       let userDat =  localStorage.getItem('accessToken');
       console.log("inside useEffect !!");
       if (userDat) {
@@ -35,15 +33,6 @@ const Navbar = () => {
       console.log(userData);
       setuserStatus(true);
       }
-    }
-          // Attach event listener
-    window.addEventListener('authChange', authListner);
-
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener('authChange', authListner);
-    };
-    
   },[])
 
   console.log(userData);
