@@ -8,6 +8,7 @@ const port = process.env.port || 5001;
 app.use(express.json())
 app.use(cors());
 app.use('/user', require("./routes/userRoute"))
+app.use('/contact', require("./routes/contactRoute"))
 
 const con = async() =>{
     try {

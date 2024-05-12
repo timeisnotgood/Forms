@@ -1,9 +1,12 @@
-const { Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize('postgres::memory:');
+const { DataTypes} = require("sequelize");
+const sequelize = require("../config/db");
 
 const contact = sequelize.define('cont_data',{
-    count_id:{
-        type:DataTypes.INTEGER
+    id:{
+        type:DataTypes.INTEGER,
+        allowNull: true,
+        autoIncrement: true,
+        primaryKey: true
     },
     cont_name:{
         type:DataTypes.STRING,
@@ -24,11 +27,15 @@ const contact = sequelize.define('cont_data',{
         type:DataTypes.BIGINT,
     },
     usr_id:{
-        type:DataTypes.BIGINT,
+        type:DataTypes.STRING,
     }
 },
 {
-  tableName: 'cont_data',
+    freezeTableName: true,
+    tableName: 'cont_data'
 })
+
+
+// sequelize.sync({force : true})
 
 module.exports = contact;
