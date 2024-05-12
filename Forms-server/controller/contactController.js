@@ -5,6 +5,7 @@ const expressAsyncHandler = require("express-async-handler")
 
 const addContact =expressAsyncHandler(async(req, res) =>{
 
+    console.log(req.body);
     const {name, fatherName, age, cast, degree, cgpa, usrId} = req.body;
 
     if (!name || !usrId) {
@@ -15,13 +16,11 @@ const addContact =expressAsyncHandler(async(req, res) =>{
     const existUser = await userModel.findOne({where:{id : usrId}});
     console.log(existUser);
 
-    const autoID = await sequelize.query("SELECT nextval('id_seq')", {
-        type: sequelize.QueryTypes.SELECT
-      })
-    console.log("*****************",autoID[0].nextval); 
-
     if(existUser){
         try {
+            const autoID = await sequelize.query("SELECT nextval('id_seq')", {
+                type: sequelize.QueryTypes.SELECT
+                })
             const insertData = await contactModel.create({
                 id:autoID[0].nextval,
                 cont_name :name,
