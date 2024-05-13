@@ -9,8 +9,7 @@ const addContact =expressAsyncHandler(async(req, res) =>{
     const {name, fatherName, age, cast, degree, cgpa, usrId} = req.body;
 
     if (!name || !usrId) {
-        res.status(404)
-        throw new Error("All fileds are Manadatory");
+        res.status(404).json({"conflict" : "All fileds are Manadatory"});
     }
 
     const existUser = await userModel.findOne({where:{id : usrId}});
@@ -33,13 +32,25 @@ const addContact =expressAsyncHandler(async(req, res) =>{
             })
             res.status(200).json(insertData);
         } catch (error) {
-            throw new Error(error);
+            res.status(404).json({"conflict" : "All fields are Mandatory"})
         }
        
     }else{
-        throw new Error("User Does'nt exist !!")
+        res.status(409).json({"conflict" : "User Does'nt exist !!"})
     }
 })
 
-module.exports = addContact;
+const getContact = expressAsyncHandler(async(req, res)=>{
+    const {name, usrId} = req.body;
+    // const usrId = 22;
+    const records = await sequelize.query(`SELECT * FROM cont_data WHERE usr_id = '${usrId}'`);
+    if(records){
+        console.log({"data" : JSON.stringify(records[0], null, 1)});
+        res.status(200).json({"data" : records[0]})
+    }else{
+        res.status(404).json({"conflict" : "User Id not exist !!"})
+    }
+})
+
+module.exports = { addContact, getContact };
 
