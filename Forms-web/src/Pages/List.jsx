@@ -30,7 +30,6 @@ const List = () => {
   }]
   return (
     <>
-      <Navbar/>
     <div className='h-screen'>
       <div>
         <h1 className='mt-10 text-center font-black'>LIST OF <span className='bg-black text-white p-2 rounded-r-md'>DATA</span></h1>
