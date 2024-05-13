@@ -41,9 +41,22 @@ const addContact =expressAsyncHandler(async(req, res) =>{
 })
 
 const getContact = expressAsyncHandler(async(req, res)=>{
-    const {name, usrId} = req.body;
+    const {username, usrId} = req.body;
     // const usrId = 22;
-    const records = await sequelize.query(`SELECT * FROM cont_data WHERE usr_id = '${usrId}'`);
+    const records = await sequelize.query(`
+        SELECT 
+        cd.id,
+        cd.cont_name,
+        cd.cont_fathername,
+        cd.cont_age,
+        cd.cont_cast,
+        cd.cont_degree,
+        cd.cont_cgpa,
+        cd.usr_id
+        FROM cont_data cd
+        JOIN usr ur ON ur.username = '${username}' OR cd.usr_id = '${usrId}'
+        where ur.id = cd.usr_id ;
+        `);
     if(records){
         console.log({"data" : JSON.stringify(records[0], null, 1)});
         res.status(200).json({"data" : records[0]})
