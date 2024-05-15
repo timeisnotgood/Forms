@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faHouse, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import { Link } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import axios from "axios"
+import {jwtDecode} from "jwt-decode"
 
 const List = () => {
 
@@ -28,6 +29,37 @@ const List = () => {
     degree:"BSc",
     cgpa:"6.2"
   }]
+
+  const [contactData, setcontactData] = useState([])
+
+  useEffect(()=>{
+    console.log("List Component");
+
+    let userDat =  localStorage.getItem('accessToken');
+    if (userDat) {
+    const decodedData = jwtDecode(userDat);
+    const { username, id} = decodedData.user; 
+    console.log(username, id);
+    
+    async function getter(){
+      const contactList = await axios.get(`http://localhost:5000/contact/getcontact`,{
+        params:{
+        usrId : "22",
+        username : "username"
+        }
+      },{
+        Headers:{
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      setcontactData([...contactList.data.data])
+      console.log(contactList.data.data);
+    }
+    getter();
+  }
+  },[])
+
   return (
     <>
     <div className='h-screen'>
@@ -37,13 +69,13 @@ const List = () => {
       </div>
       <div>
       <ul className='flex flex-col gap-5 items-center mt-10'>
-        {data.map((name, index)=>(
+        {contactData.map((data)=>(
           <li 
-            key={index}
+            key={data.id}
             className='border-solid border-2 w-2/3 px-6 py-4 rounded-md font-bold flex flex-row justify-between'>
             <div className='flex felx-row gap-6'>
               <FontAwesomeIcon icon={faUserCircle} className='mt-2'/>
-              {name.name}
+              {data.cont_name}
             </div>
             <div className='flex flex-row gap-2'>
               <Link to={'/detail'}>

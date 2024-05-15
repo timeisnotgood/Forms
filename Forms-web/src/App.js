@@ -12,7 +12,6 @@ import { jwtDecode } from 'jwt-decode'
 
 
 const App = () => {
-  console.log("App.js");
   return (
     <>
         <Navbar/>

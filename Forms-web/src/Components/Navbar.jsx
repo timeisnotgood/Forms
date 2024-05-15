@@ -18,11 +18,9 @@ const Navbar = () => {
     else setshow(true);
   },[location])
 
-  console.log("Nav.js");
 
   useEffect(()=>{
       let userDat =  localStorage.getItem('accessToken');
-      console.log("inside useEffect !!");
       if (userDat) {
       const decodedData = jwtDecode(userDat);
       const { username, id} = decodedData.user; 
@@ -30,13 +28,9 @@ const Navbar = () => {
         username:username,
         id : id
       })
-      console.log(userData);
       setuserStatus(true);
       }
   },[])
-
-  console.log(userData);
-  console.log(userStatus);
 
   const logoutUser = () =>{
     localStorage.removeItem("accessToken");
