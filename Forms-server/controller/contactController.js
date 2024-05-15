@@ -66,5 +66,15 @@ const getContact = expressAsyncHandler(async(req, res)=>{
     }
 })
 
-module.exports = { addContact, getContact };
+const getSingleContact = expressAsyncHandler(async(req, res)=>{
+    const { id } = req.params;
+    if(!id) res.status(404).json({"conflict" : "id is mandatory to find contact"})
+    console.log(req.params);
+
+    const contact = await contactModel.findOne({where:{id:id}});
+    console.log(contact);
+    res.status(contact ? 200 : 404).json(contact ? contact : {"conflict" : "Contact does'nt exist !!"})
+})
+
+module.exports = { addContact, getContact, getSingleContact };
 
