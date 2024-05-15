@@ -41,7 +41,8 @@ const addContact =expressAsyncHandler(async(req, res) =>{
 })
 
 const getContact = expressAsyncHandler(async(req, res)=>{
-    const {username, usrId} = req.body;
+    const {usrId, username} = req.query;
+    console.log("*************",req);
     // const usrId = 22;
     const records = await sequelize.query(`
         SELECT 
@@ -58,7 +59,7 @@ const getContact = expressAsyncHandler(async(req, res)=>{
         where ur.id = cd.usr_id ;
         `);
     if(records){
-        console.log({"data" : JSON.stringify(records[0], null, 1)});
+        // console.log({"data" : JSON.stringify(records[0], null, 1)});
         res.status(200).json({"data" : records[0]})
     }else{
         res.status(404).json({"conflict" : "User Id not exist !!"})
