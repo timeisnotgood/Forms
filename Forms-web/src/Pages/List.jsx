@@ -1,34 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faHouse, faUserCircle} from "@fortawesome/free-solid-svg-icons"
+import { faEye, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import {jwtDecode} from "jwt-decode"
 
 const List = () => {
-
-  const data = [{
-    name:"gokul",
-    fatherName :"kanna",
-    age:"22",
-    cast:"bc",
-    degree:"BSc",
-    cgpa:"7.4"
-  },{
-    name:"Lissan",
-    fatherName :"samy",
-    age:"21",
-    cast:"Bc",
-    degree:"BSc",
-    cgpa:"6.2"
-  },{
-    name:"Lissan",
-    fatherName :"samy",
-    age:"21",
-    cast:"Bc",
-    degree:"BSc",
-    cgpa:"6.2"
-  }]
 
   const [contactData, setcontactData] = useState([])
 
@@ -77,8 +54,10 @@ const List = () => {
               <FontAwesomeIcon icon={faUserCircle} className='mt-2'/>
               {data.cont_name}
             </div>
+
+            {/* Operation on data */}
             <div className='flex flex-row gap-2'>
-              <Link to={'/detail'}>
+              <Link to={'/detail'} state={data.id}>
               <FontAwesomeIcon icon={faEye} className='mt-2'/>
               </Link>
               <hr className='h-9 mr-2 ml-2 bg-black border'/>
