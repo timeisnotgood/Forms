@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Routes } from 'react-router-dom'
 import { faArrowRightLong, faEye, faHouse, faRightFromBracket, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,6 +6,8 @@ import Navbar from '../Components/Navbar'
 
 
 const Home = ({userData}) => {
+
+  const [isActive , setisActive] = useState(false);
   
   if (userData) {
     const {email, id, username} = userData.user;
