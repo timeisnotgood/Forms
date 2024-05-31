@@ -42,9 +42,25 @@ const Update = () => {
 
   async function submitHandler(e){
     e.preventDefault(); 
-
+    const updateContact = await axios.put(`http://localhost:5000/contact/updatecontact/${contactData.id}`,{
+      contactname : contactData.contactName, 
+      fathername : contactData.contactFatherName,
+      age : contactData.contactAge, 
+      cast : contactData.contactAge, 
+      degree : contactData.contactDegree, 
+      cgpa : contactData.contactCgpa, 
+      usrId : contactData.userId
+    })
+    console.log(contactData);
   }
 
+  const inputHandle = (e) => {
+    const { name, value } = e.target;
+    setcontactData({
+      ...contactData,
+      [name]: value,
+    });
+  };
 
   return (
     <div className='h-screen flex flex-col items-center gap-6'>
@@ -61,31 +77,48 @@ const Update = () => {
             className='mt-5 font-mono text-center text-2xl text-slate-600'
             type='text' 
             value={contactData.contactName}
-            // onChange={e =>{setcontactData({})}}
+            name='contactName'
+            onChange={inputHandle}
             />
         <label className='block font-mono font-semibold text-4xl w-36 text-center mt-2' >FatherName</label>
         <input
             className='mt-5 font-mono text-center text-2xl text-slate-600'
-            type='text' value={contactData.contactFatherName}/>
+            type='text' 
+            value={contactData.contactFatherName}
+            name='contactFatherName'
+            onChange={inputHandle}
+            />
         <label className='block font-mono font-semibold text-4xl w-36 text-center mt-2' >Age</label>
         <input
             className='mt-5 font-mono text-center text-2xl text-slate-600 mb-2'
-            type='text' value={contactData.contactAge}
+            type='text' 
+            value={contactData.contactAge}
+            name='contactAge'
+            onChange={inputHandle}
         />
         <label className='block font-mono font-semibold text-4xl w-36 text-center mt-3' >Cast</label>
         <input 
             className='mt-5 font-mono text-center text-2xl text-slate-600'
-            type='text' value={contactData.contactCast}
+            type='text' 
+            value={contactData.contactCast}
+            name='contactCast'
+            onChange={inputHandle}
             />
         <label className='block font-mono font-semibold text-4xl w-36 text-center mt-2'>Degree</label>
         <input 
             className='mt-5 font-mono text-center text-2xl text-slate-600'
-            type='text' value={contactData.contactDegree}
+            type='text' 
+            value={contactData.contactDegree}
+            name='contactDegree'
+            onChange={inputHandle}
             />
         <label className='block font-mono font-semibold text-4xl w-36 text-center mt-2'>Cgpa</label>
         <input 
             className='mt-5 font-mono text-center text-2xl text-slate-600'
-            type='text' value={contactData.contactCgpa}
+            type='text' 
+            value={contactData.contactCgpa}
+            name='contactCgpa'
+            onChange={inputHandle}
             />
         <button className='bg-green-800 w-max px-2 py-1 rounded-md text-white'>Update</button>
       </form>
