@@ -77,29 +77,29 @@ const getSingleContact = expressAsyncHandler(async(req, res)=>{
 })
 
 const updateContact = expressAsyncHandler(async(req, res)=>{
-    // const { id, contactname, fathername, age, cast, degree, cgpa, usrId } 
-    //     = req.body;
-    // const existingContact = await contactModel.findOne({where:{id:id}});
-    console.log("*****************","slkfasfhksjdghkdsjbvkakuhtewkjfnksdjfaiweurhwrhiquwrhqewj");
-    // if(!existingContact){
-    //     res.status(404).json({"conflict" : "Contact does'nt exist !!"})
-    // }
-    // try {
-    //     const updatedContact = await contactModel.update({
-    //         // id : id,
-    //         cont_name:contactname,
-    //         cont_fathername:fathername,
-    //         cont_age:age,
-    //         cont_cast:cast,
-    //         cont_degree:degree,
-    //         cont_cgpa: cgpa,
-    //         usr_id: usrId
-    //     },{where:{id:id}})
-    //     res.status(200).json(updatedContact)
-    // } catch (error) {
-    //     console.log(error);
-    //     res.json({"conflict" : "something is went wrong retry !!"})
-    // }
+    const { contactname, fathername, age, cast, degree, cgpa, usrId } 
+        = req.body;
+    const { id } = req.params;
+    console.log(id);
+    const existingContact = await contactModel.findOne({where:{id:id}});
+    if(!existingContact){
+        res.status(404).json({"conflict" : "Contact does'nt exist !!"})
+    }
+    try {
+        const updatedContact = await contactModel.update({
+            cont_name:contactname,
+            cont_fathername:fathername,
+            cont_age:age,
+            cont_cast:cast,
+            cont_degree:degree,
+            cont_cgpa: cgpa,
+            usr_id: usrId
+        },{where:{id:id}})
+        res.status(200).json(updatedContact)
+    } catch (error) {
+        console.log(error);
+        res.json({"conflict" : "something is went wrong retry !!"})
+    }
 })
 
 module.exports = { addContact, getContact, getSingleContact, updateContact };
