@@ -1,11 +1,11 @@
 const contactModel = require("../model/contactModel")
 const userModel = require("../model/userModel");
 const sequelize = require("../config/db");
-const expressAsyncHandler = require("express-async-handler")
+const expressAsyncHandler = require("express-async-handler");
 
 const addContact =expressAsyncHandler(async(req, res) =>{
 
-    console.log(req.body);
+    // console.log(req.body);
     const {name, fatherName, age, cast, degree, cgpa, usrId} = req.body;
 
     if (!name || !usrId) {
@@ -13,7 +13,7 @@ const addContact =expressAsyncHandler(async(req, res) =>{
     }
 
     const existUser = await userModel.findOne({where:{id : usrId}});
-    console.log(existUser);
+    // console.log(existUser);
 
     if(existUser){
         try {
@@ -42,7 +42,7 @@ const addContact =expressAsyncHandler(async(req, res) =>{
 
 const getContact = expressAsyncHandler(async(req, res)=>{
     const {usrId, username} = req.query;
-    console.log("*************",req);
+    // console.log("*************",req);
     // const usrId = 22;
     const records = await sequelize.query(`
         SELECT 
@@ -69,12 +69,38 @@ const getContact = expressAsyncHandler(async(req, res)=>{
 const getSingleContact = expressAsyncHandler(async(req, res)=>{
     const { id } = req.params;
     if(!id) res.status(404).json({"conflict" : "id is mandatory to find contact"})
-    console.log(req.params);
+    // console.log(req.params);
 
     const contact = await contactModel.findOne({where:{id:id}});
-    console.log(contact);
+    // console.log(contact);
     res.status(contact ? 200 : 404).json(contact ? contact : {"conflict" : "Contact does'nt exist !!"})
 })
 
-module.exports = { addContact, getContact, getSingleContact };
+const updateContact = expressAsyncHandler(async(req, res)=>{
+    // const { id, contactname, fathername, age, cast, degree, cgpa, usrId } 
+    //     = req.body;
+    // const existingContact = await contactModel.findOne({where:{id:id}});
+    console.log("*****************","slkfasfhksjdghkdsjbvkakuhtewkjfnksdjfaiweurhwrhiquwrhqewj");
+    // if(!existingContact){
+    //     res.status(404).json({"conflict" : "Contact does'nt exist !!"})
+    // }
+    // try {
+    //     const updatedContact = await contactModel.update({
+    //         // id : id,
+    //         cont_name:contactname,
+    //         cont_fathername:fathername,
+    //         cont_age:age,
+    //         cont_cast:cast,
+    //         cont_degree:degree,
+    //         cont_cgpa: cgpa,
+    //         usr_id: usrId
+    //     },{where:{id:id}})
+    //     res.status(200).json(updatedContact)
+    // } catch (error) {
+    //     console.log(error);
+    //     res.json({"conflict" : "something is went wrong retry !!"})
+    // }
+})
+
+module.exports = { addContact, getContact, getSingleContact, updateContact };
 
