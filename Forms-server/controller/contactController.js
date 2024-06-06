@@ -2,10 +2,10 @@ const contactModel = require("../model/contactModel")
 const userModel = require("../model/userModel");
 const sequelize = require("../config/db");
 const expressAsyncHandler = require("express-async-handler");
+const { where } = require("sequelize");
 
 const addContact =expressAsyncHandler(async(req, res) =>{
 
-    // console.log(req.body);
     const {name, fatherName, age, cast, degree, cgpa, usrId} = req.body;
 
     if (!name || !usrId) {
@@ -13,13 +13,13 @@ const addContact =expressAsyncHandler(async(req, res) =>{
     }
 
     const existUser = await userModel.findOne({where:{id : usrId}});
-    // console.log(existUser);
 
     if(existUser){
         try {
             const autoID = await sequelize.query("SELECT nextval('id_seq')", {
                 type: sequelize.QueryTypes.SELECT
                 })
+                console.log("************************8",autoID[0].nextval);
             const insertData = await contactModel.create({
                 id:autoID[0].nextval,
                 cont_name :name,
@@ -33,6 +33,7 @@ const addContact =expressAsyncHandler(async(req, res) =>{
             res.status(200).json(insertData);
         } catch (error) {
             res.status(404).json({"conflict" : "All fields are Mandatory"})
+            console.log(error);
         }
        
     }else{
@@ -102,5 +103,13 @@ const updateContact = expressAsyncHandler(async(req, res)=>{
     }
 })
 
-module.exports = { addContact, getContact, getSingleContact, updateContact };
+const deleteContact = expressAsyncHandler(async(req, res)=>{
+    const { id } = req.params;
+    console.log("$$$$$$$$$$$$$$$$$$$",id);
+
+    const deleteData = await contactModel.destroy({where:{id : id}});
+    res.json({deleteData})
+})
+
+module.exports = { addContact, getContact, getSingleContact, updateContact, deleteContact };
 

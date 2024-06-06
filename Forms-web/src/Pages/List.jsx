@@ -34,6 +34,17 @@ const List = () => {
   }
   },[])
 
+  async function deleteHandler(a){
+    const deletedContact = await axios.delete(`http://localhost:5000/contact/deletecontact/${a}`,{
+      Headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+    console.log(a);
+    // const deleteContact = await axios.delete();
+  }
+
   return (
     <div className='h-screen'>
       <div className='flex flex-col items-center'>
@@ -60,7 +71,10 @@ const List = () => {
               <Link to={'/update'} state={data.id}>
                 <button className='text-sm p-2 font-medium border-solid border px-2 py-1 rounded-md h-max'>Edit</button>
               </Link>
-              <button className='text-sm p-2 text-red-500 font-semibold border-solid border border-red-400 px-3 py-1 rounded-md h-max'>Delete</button>
+              <button 
+              className='text-sm p-2 text-red-500 font-semibold border-solid border border-red-400 px-3 py-1 rounded-md h-max'
+              onClick={()=>deleteHandler(data.id)}>
+              Delete</button>
             </div>
           </li>
         ))}

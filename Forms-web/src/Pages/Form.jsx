@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar';
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
+import { useNavigate } from 'react-router-dom';
 
 
 const Form = () => {
-    
+  
+  const navigate = useNavigate();
   const [dataholder, setdataholder] = useState([]);
   const [error, seterror] = useState()
   const [status, setstatus] = useState("typing")
@@ -45,11 +47,12 @@ const Form = () => {
             "Content-Type":"application/json",
           }
         })
-
-        const returnContData = await contData
-        console.log(returnContData.request.status);
+        const returnContData = await contData;
+        if(returnContData.request.status == 200){
+          setstatus("success");
+          navigate('/list')
+        } 
       
-      if (contData) setstatus("success");
       }
       
     } catch (error) {
@@ -59,9 +62,6 @@ const Form = () => {
       console.log(error);
     }
   }
-
-  console.log(status);
-  console.log(error);
 
 
   function inputHandler(e){
